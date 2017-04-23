@@ -8,9 +8,10 @@ import string
 from builtins import dict, range
 class PasswordGeneratorClass:
     specialSeq = ['@', '$','&']
-    def generatePassword(self, passlength):
+    password = []
+    def __init__(self, passlength):
+        self.passwordlength = passlength
         
-        password = []
         num2alpha = dict(zip(range(1,26),string.ascii_lowercase))
         num2ALPHA = dict(zip(range(1,26),string.ascii_uppercase))
         randPlace1 = random.randrange(int(passlength)) # place special character here
@@ -23,13 +24,11 @@ class PasswordGeneratorClass:
         
         for i in range(1,int(passlength)): 
             if (i == randPlace1):
-                password.append(random.choice(PasswordGeneratorClass.specialSeq)) #print (random.choice(seq))
+                self.password.append(random.choice(PasswordGeneratorClass.specialSeq)) #print (random.choice(seq))
             if (i == randPlace2):
-                password.append(num2ALPHA[random.randrange(1,26)]) #print (num2ALPHA[random.randrange(1,26)])    
+                self.password.append(num2ALPHA[random.randrange(1,26)]) #print (num2ALPHA[random.randrange(1,26)])    
             else:
-                password.append(num2alpha[random.randrange(1,26)]) #print (num2alpha[random.randrange(1,26)])
+                self.password.append(num2alpha[random.randrange(1,26)]) #print (num2alpha[random.randrange(1,26)])
         
-        return password
-    
-    def __init__(self): 
-        pass
+    def returnPassword(self):
+        return self.password    
